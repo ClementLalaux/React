@@ -1,26 +1,26 @@
-import { Component } from "react";
+import { Component } from 'react';
+import { Adresse } from './Adresse';
 
-class Contact extends Component{
+export class Contact extends Component{
     constructor(props){
-        super(props);
+        super(props)
         this.state = {
-            nom : props.nom,
-            prenom : props.prenom,
-            telephone : props.telephone,
-        };
+            contact : { 
+                nom: "nom contact", 
+                prenom: "prenom contact", 
+                telephone: "0123456789", 
+                adresse: { rue: "ma rue", ville: "ma ville", cp: "59200" }
+            } 
+        }
     }
 
-    render(){
+    render() {
+        const {nom, prenom, telephone} = this.state.contact;
         return(
             <div>
-                <h2>Mon contact : </h2>
-                <p>{this.state.nom} , {this.state.prenom} , {this.state.telephone}</p>
-                <div>
-                    {this.props.children}
-                </div>
+                Nom : {nom}, Prénom : {prenom}, Téléphone : {telephone}
+                <Adresse adresse={this.state.contact.adresse}></Adresse>
             </div>
-        );
+        )
     }
 }
-
-export default Contact;
