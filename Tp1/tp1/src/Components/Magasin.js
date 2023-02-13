@@ -11,40 +11,34 @@ export class Magasin extends Component {
             produits : [
                 {
                     id : 0,
-                    titre : "produit1",
-                    prix : 49.99,
+                    titre : "Lait",
+                    prix : 1.92,
                     description : "Lorem ipsum"
                 },
                 {
                     id : 1,
-                    titre : "produit2",
-                    prix : 49.99,
+                    titre : "Oeuf",
+                    prix : 2.50,
                     description : "Lorem ipsum"
                 },
                 {
                     id : 2,
-                    titre : "produit3",
-                    prix : 49.99,
+                    titre : "Farine",
+                    prix : 0.99,
                     description : "Lorem ipsum"
                 },
                 {
                     id : 3,
-                    titre : "produit4",
-                    prix : 49.99,
+                    titre : "Chocolat",
+                    prix : 2.25,
                     description : "Lorem ipsum"
                 },
                 {
                     id : 4,
-                    titre : "produit5",
-                    prix : 49.99,
+                    titre : "Fleur d'oranger",
+                    prix : 4.36,
                     description : "Lorem ipsum"
-                },
-                {
-                    id : 5,
-                    titre : "produit6",
-                    prix : 49.99,
-                    description : "Lorem ipsum"
-                },
+                }
             ],
             tableProduitChoisis : [
             ],
@@ -59,7 +53,7 @@ export class Magasin extends Component {
         this.state.produits.forEach(p => {
             if(p.id == id){
                 tmpTableProduitChoisis.push(this.state.produits[id]);
-                tmpPrix += this.state.produits[id].prix;
+                tmpPrix += Number((this.state.produits[id].prix).toFixed(2));
             }
         })
         this.setState({tableProduitChoisis : [...tmpTableProduitChoisis]})
