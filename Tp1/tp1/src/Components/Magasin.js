@@ -66,6 +66,13 @@ export class Magasin extends Component {
         this.setState({prix : tmpPrix});
     }
 
+    rPanier = () => {
+        const tmpT = [];
+        const tmpP = 0;
+        this.setState({tableProduitChoisis : tmpT})
+        this.setState({prix : tmpP})
+    }
+
     render() {
 
         return (
@@ -89,7 +96,7 @@ export class Magasin extends Component {
                 </table>
                 </div>
                 <div className='div-magasin'>
-                    <Panier produitChoisis={this.state.tableProduitChoisis} prix={this.state.prix}>
+                    <Panier produitChoisis={this.state.tableProduitChoisis} prix={this.state.prix} rPanier={this.rPanier}>
 
                     </Panier>
                 </div>

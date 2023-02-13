@@ -5,6 +5,11 @@ export class Panier extends Component {
         super(props)
     }
 
+    resetPanier = (e) => {
+        e.preventDefault()
+        this.props.rPanier()
+    }
+
     render() {
         return (
             <>
@@ -12,6 +17,7 @@ export class Panier extends Component {
                 {this.props.produitChoisis.map((produitChoisis,i) => (<p key={i}>{produitChoisis.titre}</p>))}
                 <hr></hr>
                 <p>Total : {this.props.prix}</p>
+                <a href="#" onClick={this.resetPanier} >Reset le panier</a>
             </>
         )
     }
