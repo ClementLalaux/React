@@ -7,6 +7,7 @@ export class Contact extends Component{
         super(props)
     }
 
+
     render() {
         const {nom, prenom, telephone,actif,adresse} = this.props.info;
         return(
@@ -14,7 +15,8 @@ export class Contact extends Component{
                 <h3>Contact : </h3>
                 <p className={actif ? "ClassActive" : "ClassPasActive"}>{nom} {prenom} {telephone}</p>
                 <Adresse adresse={adresse}></Adresse>
-            </div>
+                <input type="text" name ="nameInput" onClick={this.changeStatut} placeholder='Changer le statut'></input>
+                </div>
         )
     }
 }

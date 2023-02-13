@@ -1,5 +1,4 @@
 import { Component } from 'react';
-
 import { Contact } from './Contact';
 
 export class Data extends Component{
@@ -22,6 +21,7 @@ export class Data extends Component{
             }
         ]};
     }
+
 
     render() {
         return(
