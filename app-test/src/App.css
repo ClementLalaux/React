@@ -48,3 +48,11 @@
 .table-produits tbody tr td {
   padding: 1vh;
 }
+
+.statut-vrai {
+  color:green;
+}
+
+.statut-faux {
+  color:red;
+}

@@ -29,11 +29,19 @@ export class DataComponent extends Component {
                             <th >Nom</th>
                             <th>Téléphone</th>
                             <th>Adresse</th>
-                            
+                            <th>Statut</th>
                         </tr>
                     </thead>
                     <tbody>
-                    {this.state.data.map((client,i) => (<tr><td>{client.firstName}</td><td>{client.lastName}</td><td>{client.phone}</td><td><Adresse adresse={client.address}></Adresse></td></tr>))}
+                    {this.state.data.map((client) => (
+                        <tr key={client.id}>
+                            <td>{client.firstName}</td>
+                            <td>{client.lastName}</td>
+                            <td>{client.phone}</td>
+                            <td><Adresse adresse={client.address}></Adresse></td>
+                            <td className={client.statut ? "statut-vrai" : "statut-faux"}>{client.statut ? "True" : "False"}</td>
+                        </tr>
+                    ))}
                     </tbody>
                 </table>
             </div>
