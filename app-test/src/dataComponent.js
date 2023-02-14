@@ -1,6 +1,6 @@
 import { Component } from "react"
 import Adresse from "./Components/Adresse"
-import { getInfoPokeApi } from "./Components/data.service"
+import { getInfoClientsApi } from "./Components/data.service"
 
 export class DataComponent extends Component {
     constructor(props){
@@ -11,7 +11,7 @@ export class DataComponent extends Component {
     }
 
     componentDidMount(){
-        getInfoPokeApi().then(data => {
+        getInfoClientsApi().then(data => {
             this.setState({ data : data})
             console.log(this.state.data)
         })
