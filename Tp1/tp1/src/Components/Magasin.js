@@ -50,10 +50,11 @@ export class Magasin extends Component {
     recupereProduitById = (id) => {
         const tmpTableProduitChoisis = [...this.state.tableProduitChoisis]
         let tmpPrix = this.state.prix;
-        this.state.produits.forEach(p => {
+        const tmpStateProduits = [...this.state.produits];
+        tmpStateProduits.forEach(p => {
             if(p.id == id){
-                tmpTableProduitChoisis.push(this.state.produits[id]);
-                tmpPrix += Number((this.state.produits[id].prix).toFixed(2));
+                tmpTableProduitChoisis.push({...this.state.produits[id]});
+                tmpPrix += this.state.produits[id].prix;
             }
         })
         this.setState({tableProduitChoisis : [...tmpTableProduitChoisis]})
@@ -61,10 +62,8 @@ export class Magasin extends Component {
     }
 
     rPanier = () => {
-        const tmpT = [];
-        const tmpP = 0;
-        this.setState({tableProduitChoisis : tmpT})
-        this.setState({prix : tmpP})
+        this.setState({tableProduitChoisis : []})
+        this.setState({prix : 0})
     }
 
     render() {
@@ -85,7 +84,7 @@ export class Magasin extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                    {this.state.produits.map((produit,i) => (<Produit produit={produit} key={i} recupereProduitById={this.recupereProduitById}></Produit>))}
+                    {this.state.produits.map((produit) => (<Produit produit={produit} key={produit.id} recupereProduitById={this.recupereProduitById}></Produit>))}
                     </tbody>
                 </table>
                 </div>
