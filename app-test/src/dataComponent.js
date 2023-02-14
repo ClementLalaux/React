@@ -13,10 +13,14 @@ export class DataComponent extends Component {
     componentDidMount(){
         getInfoClientsApi().then(data => {
             this.setState({ data : data})
-            console.log(this.state.data)
         })
     }
 
+    changerStatut = (e) => {     
+        const tmpStatut = [...this.state.data];
+        tmpStatut[e.target.dataset.value-1].status = !tmpStatut[e.target.dataset.value-1].status;
+        this.setState({data : tmpStatut});
+    }
 
     render(){
         return(
@@ -39,7 +43,8 @@ export class DataComponent extends Component {
                             <td>{client.lastName}</td>
                             <td>{client.phone}</td>
                             <td><Adresse adresse={client.address}></Adresse></td>
-                            <td className={client.statut ? "statut-vrai" : "statut-faux"}>{client.statut ? "True" : "False"}</td>
+                            <td className={client.status ? "statut-vrai" : "statut-faux"}>{client.status ? "True" : "False"}</td>
+                            <td><button data-value={client.id}onClick={this.changerStatut}>Changer le statut</button></td>
                         </tr>
                     ))}
                     </tbody>
