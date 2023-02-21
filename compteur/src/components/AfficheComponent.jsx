@@ -7,7 +7,6 @@ const AfficheComponent = (props) => {
     useEffect(() => {
         let interval = setInterval(() => {
             setCount(count+1);
-            console.log(count)
         },1000)
         return () => {
             if(interval){
@@ -15,12 +14,13 @@ const AfficheComponent = (props) => {
                 interval = undefined;
             }
         }
-    }, [count])
+    },[count])
 
     return(
         <div>
             <h5>Compteur n°{props.compteur.id}</h5>
             <p>Commence à : {props.compteur.temps} et est actuellement à {count}</p>
+            <bouton>Supprimer</bouton>
         </div>
     )
 }
