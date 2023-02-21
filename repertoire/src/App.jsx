@@ -172,7 +172,34 @@ function App() {
   }
   useEffect(() => {
     refreshContacts()
-  }, [])
+  }, [contacts])
+
+  const deleteContact = async (contactId) => {
+
+    if(window.confirm("Etes-vous sûr ?")) {
+      const contactSupprimer = contacts.find(contact => contact.id === contactId)
+      if (contactSupprimer) {
+        try {
+          const token = localStorage.getItem('token')
+          if (token) {
+            const response = await fetch(`${BASE_DB_URL}contacts/${contactId}.json?auth=${token}`, {
+              method: "DELETE"
+            })
+  
+            if (!response.ok) {
+              throw new Error("Erreur lors de la requête DELETE !")
+            }
+  
+            setContacts([...contacts.filter(contact => contact !== contactId)])
+          }
+        } catch (error) {
+          console.error(error.message);
+        }
+      } 
+    } 
+  }
+
+
 
   return (
     <>
@@ -245,8 +272,8 @@ function App() {
               <p className="navbar-brand">Navbar</p>
             </div>
             <div>
-              <button className="btn btn-primary" onClick={() => isLogged ? logOutHandler() : connection()}>{isLogged ? 'Log Out' : 'Connection'}</button>
-              <button className="btn btn-outline-success mx-1" onClick={() => isLogged ? logOutHandler() : inscription()}>{isLogged ? 'Log Out' : 'Inscription'}</button>
+              { !isLogged ? <button className="btn btn-primary" onClick={() => connection()}>Connection</button> : null}
+              <button className="btn btn-primary mx-1" onClick={() => isLogged ? logOutHandler() : inscription()}>{isLogged ? 'Log Out' : 'Inscription'}</button>
             </div>
           </div>
         </nav>
@@ -261,7 +288,7 @@ function App() {
                 <hr />
                 {contacts.length === 0 || !isLogged ? 
                 <p>Il n'y a pas de contacts</p> :
-                contacts.map(c => <ContactDisplay key={c.id} contact={c}></ContactDisplay>)
+                contacts.map(c => <ContactDisplay key={c.id} contact={c} deleteContact={deleteContact}></ContactDisplay>)
                 }
               </div>
             </div>
